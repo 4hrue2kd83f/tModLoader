@@ -70,10 +70,10 @@ namespace Terraria.ModLoader.Default
 			AddContent<TileTags>();
 			AddContent<WallTags>();
 
-			/*AddPatronSets();
-			AddPlayer("PatronModPlayer", new PatronModPlayer());
+			AddPatronSets();
+			AddContent<PatronModPlayer>();
 			AddDeveloperSets();
-			AddPlayer("DeveloperPlayer", new DeveloperPlayer());*/
+			AddContent<DeveloperPlayer>();
 		}
 
 		public override void Unload() {

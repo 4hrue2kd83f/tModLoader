@@ -494,6 +494,7 @@ namespace Terraria.ModLoader
 			GlobalBgStyleLoader.Unload();
 			WaterStyleLoader.Unload();
 			WaterfallStyleLoader.Unload();
+			PlayerDrawLayerHooks.Unload();
 			WorldHooks.Unload();
 			SystemHooks.Unload();
 			ResizeArrays(true);
