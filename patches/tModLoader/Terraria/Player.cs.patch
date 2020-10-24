@@ -1474,7 +1474,7 @@
  								nonTorch = selectedItem;
  
 -							if (inventory[selectedItem].createTile != 4)
-+							if (!TileID.Sets.Torch[inventory[selectedItem].createTile])
++							if (inventory[selectedItem].createTile < 0 || !TileID.Sets.Torch[inventory[selectedItem].createTile])
  								selectedItem = i;
  
  							break;
@@ -1489,7 +1489,7 @@
  								nonTorch = selectedItem;
  
 -							if (inventory[selectedItem].createTile != 4)
-+							if (!TileID.Sets.Torch[inventory[selectedItem].createTile])
++							if (inventory[selectedItem].createTile < 0 || !TileID.Sets.Torch[inventory[selectedItem].createTile])
  								selectedItem = i;
  
  							break;
