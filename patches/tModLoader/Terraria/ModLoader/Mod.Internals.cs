@@ -100,10 +100,7 @@ namespace Terraria.ModLoader
 					continue;
 				}
 
-				if (type.IsSubclassOf(typeof(ModGore))) {
-					modGores.Add(type);
-				}
-				else if (typeof(ILoadable).IsAssignableFrom(type)) {
+				if (typeof(ILoadable).IsAssignableFrom(type)) {
 					var autoload = AutoloadAttribute.GetValue(type);
 
 					if (autoload.NeedsAutoloading) {
@@ -117,7 +114,7 @@ namespace Terraria.ModLoader
 			}
 
 			if (Properties.AutoloadGores) {
-				AutoloadGores(modGores);
+				GoreLoader.AutoloadGores(this);
 			}
 
 			if (Properties.AutoloadBackgrounds) {
@@ -179,18 +176,6 @@ namespace Terraria.ModLoader
 		private void AutoloadBackgrounds() {
 			foreach (string texture in Assets.EnumeratePaths<Texture2D>().Where(t => t.StartsWith("Backgrounds/"))) {
 				AddBackgroundTexture($"{Name}/{texture}");
-			}
-		}
-
-		private void AutoloadGores(IList<Type> modGores) {
-			var modGoreNames = modGores.ToDictionary(t => t.FullName);
-
-			foreach (string texturePath in Assets.EnumeratePaths<Texture2D>().Where(t => t.StartsWith("Gores/"))) {
-				ModGore modGore = null;
-				if (modGoreNames.TryGetValue($"{Name}.{texturePath.Replace('/', '.')}", out Type t))
-					modGore = (ModGore)Activator.CreateInstance(t);
-
-				AddGore($"{Name}/{texturePath}", modGore);
 			}
 		}
 
